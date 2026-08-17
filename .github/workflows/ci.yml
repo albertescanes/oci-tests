@@ -32,9 +32,11 @@ jobs:
         uses: redhat-actions/buildah-build@v3
         with:
           image: ${{ env.IMAGE_NAME }}
-          tags: ${{ env.IMAGE_NAME }}
+          tags: ${{ env.DEFAULT_TAG }}
           containerfiles: ./Containerfile
           oci: true
 
       - name: Push to container registry
         uses: redhat-actions/push-to-registry@v3
+        with:
+          image: ${{ env.IMAGE_NAME }}
