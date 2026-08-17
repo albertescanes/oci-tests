@@ -36,7 +36,7 @@ jobs:
         with:
           tags: |
             type=raw,value=${{ env.DEFAULT_TAG }}
-            type=raw,value={{date YYYYMMDD}}
+            type=raw,value={{date 'YYYYMMDD'}}
           labels: |
             containers.bootc=1
           sep-tags: " "
