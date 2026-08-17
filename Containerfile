@@ -1,0 +1,1 @@
+FROM quay.io/fedora/fedora-minimal:44@sha256:2fc54affd7509db2e94b892bb327ac159f91589e4fd3615d3b1d988ad3c721e9
