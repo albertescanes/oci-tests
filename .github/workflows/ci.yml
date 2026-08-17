@@ -39,4 +39,5 @@ jobs:
       - name: Push to container registry
         uses: redhat-actions/push-to-registry@v3
         with:
+          registry: ${{ env.IMAGE_REGISTRY }}
           image: ${{ env.IMAGE_NAME }}
