@@ -39,7 +39,7 @@ jobs:
             type=raw,value={{date 'YYYYMMDD'}}
           labels: |
             containers.bootc=1
-          sep-tags: " "
+          sep-tags: ' '
 
       - name: Build
         uses: redhat-actions/buildah-build@v3
