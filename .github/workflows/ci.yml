@@ -11,7 +11,7 @@ on:
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-  DEFAULT_TAG: "latest"
+  DEFAULT_TAG: latest
 
 jobs:
   build-push:
@@ -45,7 +45,6 @@ jobs:
         uses: redhat-actions/buildah-build@v3
         with:
           image: ${{ env.IMAGE_NAME }}
-          tags: ${{ env.DEFAULT_TAG }}
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
           containerfiles: ./Containerfile
