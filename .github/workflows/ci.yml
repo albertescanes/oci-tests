@@ -30,11 +30,24 @@ jobs:
           password: ${{ github.token }}
           registry: ${{ env.IMAGE_REGISTRY }}
 
+      - name: Image metadata
+        uses: docker/metadata-action@v6
+        id: metadata
+        with:
+          tags: |
+            type=raw,value=${{ env.DEFAULT_TAG }}
+            type=raw,value={{date YYYYMMDD}}
+          labels: |
+            containers.bootc=1
+          sep-tags: " "
+
       - name: Build
         uses: redhat-actions/buildah-build@v3
         with:
           image: ${{ env.IMAGE_NAME }}
           tags: ${{ env.DEFAULT_TAG }}
+          tags: ${{ steps.metadata.outputs.tags }}
+          labels: ${{ steps.metadata.outputs.labels }}
           containerfiles: ./Containerfile
           oci: true
 
@@ -43,3 +56,4 @@ jobs:
         with:
           registry: ${{ env.IMAGE_REGISTRY }}
           image: ${{ env.IMAGE_NAME }}
+          tags: ${{ steps.metadata.outputs.tags }}
