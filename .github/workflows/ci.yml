@@ -1,0 +1,40 @@
+name: Build and push
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/*
+      - Containerfile
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: ${{ github.event.repository.name }}
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  DEFAULT_TAG: latest
+
+jobs:
+  build-push:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Log in to container registry
+        uses: redhat-actions/podman-login@v2
+        with:
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+          registry: ${{ env.IMAGE_REGISTRY }}
+
+      - name: Build
+        uses: redhat-actions/buildah-build@v3
+        with:
+          image: ${{ env.IMAGE_NAME }}
+          tags: ${{ env.IMAGE_NAME }}
+          containerfiles: ./Containerfile
+          oci: true
+
+      - name: Push to container registry
+        uses: redhat-actions/push-to-registry@v3
