@@ -30,9 +30,9 @@ jobs:
           password: ${{ github.token }}
           registry: ${{ env.IMAGE_REGISTRY }}
 
-      - name: Image metadata
-        uses: docker/metadata-action@v6
+      - name: Extract metadata
         id: metadata
+        uses: docker/metadata-action@v6
         with:
           tags: |
             type=raw,value=${{ env.DEFAULT_TAG }}
@@ -48,6 +48,7 @@ jobs:
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
           containerfiles: ./Containerfile
+          buildah-image: quay.io/buildah/stable
           oci: true
 
       - name: Push to container registry
