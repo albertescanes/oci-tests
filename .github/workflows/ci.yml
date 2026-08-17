@@ -11,7 +11,7 @@ on:
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-  DEFAULT_TAG: latest
+  DEFAULT_TAG: "latest"
 
 jobs:
   build-push:
@@ -36,7 +36,7 @@ jobs:
         with:
           tags: |
             type=raw,value=${{ env.DEFAULT_TAG }}
-            type=raw,value={{date 'YYYYMMDD'}}
+            type=raw,value={{date YYYYMMDD}}
           labels: |
             containers.bootc=1
           sep-tags: " "
