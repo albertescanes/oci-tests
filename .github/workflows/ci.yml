@@ -28,13 +28,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Log in to container registry
-        uses: redhat-actions/podman-login@v2
-        with:
-          username: ${{ github.actor }}
-          password: ${{ github.token }}
-          registry: ${{ env.IMAGE_REGISTRY }}
-
       - name: Extract metadata
         id: metadata
         uses: docker/metadata-action@v6
@@ -55,6 +48,13 @@ jobs:
           containerfiles: ./Containerfile
           buildah-image: quay.io/buildah/stable
           oci: true
+
+      - name: Log in to container registry
+        uses: redhat-actions/podman-login@v2
+        with:
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+          registry: ${{ env.IMAGE_REGISTRY }}
 
       - name: Push to container registry
         uses: redhat-actions/push-to-registry@v3
