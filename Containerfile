@@ -1,1 +1,1 @@
-FROM quay.io/fedora/fedora-minimal:44@sha256:2fc54affd7509db2e94b892bb327ac159f91589e4fd3615d3b1d988ad3c721e9
+FROM quay.io/fedora-ostree-desktops/silverblue:rawhide@sha256:cc5839fa9dae1edff55f8f1762890b19e834b76580cb225c5ecb4076c2345777
