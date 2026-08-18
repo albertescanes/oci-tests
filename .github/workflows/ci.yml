@@ -27,6 +27,7 @@ jobs:
         with:
           image: ${{ env.IMAGE_NAME }}
           tags: ${{ env.DEFAULT_TAG }} ${{ github.sha }}
+          oci: true
           containerfiles: ./Containerfile
           buildah-image: quay.io/buildah/stable
 
