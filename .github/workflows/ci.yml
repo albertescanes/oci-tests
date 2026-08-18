@@ -8,7 +8,7 @@ on:
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-  IMAGE_TAGS: latest ${{ github.sha }}
+  DEFAULT_TAG: latest
 
 jobs:
   build-push:
@@ -26,7 +26,7 @@ jobs:
         uses: redhat-actions/buildah-build@v3
         with:
           image: ${{ env.IMAGE_NAME }}
-          tags: ${{ env.IMAGE_TAGS }}
+          tags: ${{ env.DEFAULT_TAG }} ${{ github.sha }}
           containerfiles: ./Containerfile
           buildah-image: quay.io/buildah/stable
 
