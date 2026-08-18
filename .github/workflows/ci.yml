@@ -26,9 +26,8 @@ jobs:
         uses: redhat-actions/buildah-build@v3
         with:
           image: ${{ env.IMAGE_NAME }}
-          tags: ${{ env.DEFAULT_TAG }}
+          tags: ${{ env.DEFAULT_TAG }} ${{ github.sha }}
           containerfiles: ./Containerfile
-          oci: false
           buildah-image: quay.io/buildah/stable
 
       - name: Log in to container registry
