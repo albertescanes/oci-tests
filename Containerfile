@@ -1,1 +1,3 @@
 FROM quay.io/fedora-ostree-desktops/silverblue:rawhide@sha256:cc5839fa9dae1edff55f8f1762890b19e834b76580cb225c5ecb4076c2345777
+
+LABEL containers.bootc 1
