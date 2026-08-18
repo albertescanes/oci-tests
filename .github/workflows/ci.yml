@@ -22,13 +22,14 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Build
+        id: build
         uses: redhat-actions/buildah-build@v3
         with:
           image: ${{ env.IMAGE_NAME }}
-          tags: ${{ env.DEFAULT_TAG }}
+          tags: ${{ env.DEFAULT_TAG }} ${{ github.sha }}
           containerfiles: ./Containerfile
-          buildah-image: quay.io/buildah/stable
           oci: true
+          buildah-image: quay.io/buildah/stable
 
       - name: Log in to container registry
         uses: redhat-actions/podman-login@v2
@@ -40,5 +41,6 @@ jobs:
       - name: Push to container registry
         uses: redhat-actions/push-to-registry@v3
         with:
-          registry: ${{ env.IMAGE_REGISTRY }}
           image: ${{ env.IMAGE_NAME }}
+          tags: ${{ steps.build.outputs.tags }}
+          registry: ${{ env.IMAGE_REGISTRY }}
