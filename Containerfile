@@ -3,6 +3,10 @@ FROM quay.io/fedora-ostree-desktops/silverblue:rawhide@sha256:cc5839fa9dae1edff5
 RUN <<EOF
 set -xeuo pipefail
 
+dnf -y install steam-devices
+
+dnf -y --setopt=protected_packages= remove sudo
+
 dnf -y remove \
     firefox \
     gnome-shell-extension-{apps-menu,launch-new-instance,places-menu,window-list} \
