@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-silverblue:rawhide@sha256:1c0d2007afbec0822af4a1191cedf4866f389ca42b0e83655d61058a91460bb0
+FROM quay.io/fedora/fedora-silverblue:rawhide@sha256:cdbc24401522cf38f02f4d6f382f862039360be0cb17bcaa4b3da82763721cfb
 
 RUN <<EOF
 set -xeuo pipefail
