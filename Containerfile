@@ -8,11 +8,11 @@ dnf -y --setopt=protected_packages= remove sudo
 dnf -y remove \
     firefox \
     gnome-shell-extension-{apps-menu,launch-new-instance,places-menu,window-list} \
-    gnome-software-rpm-ostree
+    gnome-software-rpm-ostree \
     ptyxis
 
 dnf -y install \
-    gnome-console
+    gnome-console \
     steam-devices
 
 dnf clean all
